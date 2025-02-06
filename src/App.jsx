@@ -1,17 +1,26 @@
 import react from "react";
 import Header from "../components/Header.jsx";
+import {languages} from "../langList.jsx";
 import ResultBar from "../components/ResultBar.jsx";
+import Languages from "../components/Languages.jsx";
 
 function App(){
 
+    let langs = languages.map(language => ({
+        name : language.name,
+        bgColor : language.backgroundColor,
+        color : language.color,
+    }))
+
+    console.log(langs)
+
     return (
          <>
-             <header>
-                 <h1>Assembly: Endgame</h1>
-                 <p>Guess the word within 8 attempts to keep the
-                     programming world safe from Assembly!</p>
-             </header>
+             <Header/>
              <ResultBar/>
+             <Languages
+
+             />
          </>
     )
 }

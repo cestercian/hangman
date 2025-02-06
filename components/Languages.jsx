@@ -3,11 +3,17 @@ export default function Languages(props){
     const styles = {
         container: {
             backgroundColor: props.bgColor,
-            color : props.color
+            color : props.color,
         }
     }
 
     return(
-        <div style={styles.container}>${props.name}</div>
+        <span
+            className="chip"
+            style={styles.container}
+            key={props.name}
+        >
+            {props.name}
+        </span>
     )
 }

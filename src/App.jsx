@@ -9,7 +9,7 @@ import WordDisplay from "../components/WordDisplay.jsx";
 
 function App(){
 
-    const [words,setWords] = useState("React")
+    const [word,setWord] = useState("React")
 
     let langList = languages.map(language => (
         <Languages
@@ -20,7 +20,7 @@ function App(){
         />
     ))
 
-    let wordsArr=[...words.split("")]
+    let wordsArr=[...word.split("")]
 
     const wordList = wordsArr.map((word,index) => (
         <WordDisplay

@@ -16,18 +16,16 @@ function App(){
             name = {language.name}
             bgColor = {language.backgroundColor}
             color = {language.color}
+            key={language.name}
         />
     ))
 
-    let wordsArr=['h','e','l',"l",'o']
+    let wordsArr=[...words.split("")]
 
-
-    wordsArr.push(...words)
-
-
-    const wordList = wordsArr.map(word => (
+    const wordList = wordsArr.map((word,index) => (
         <WordDisplay
             name={word.toUpperCase()}
+            key={index}
         />
     ))
 
@@ -38,8 +36,7 @@ function App(){
              <section className="language-chips">
                  {langList}
              </section>
-             <p></p>
-             <section className="language-chips">{wordList}</section>
+             <section className="word">{wordList}</section>
          </>
     )
 }

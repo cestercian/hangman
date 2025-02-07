@@ -1,3 +1,5 @@
+// noinspection com.intellij.reactbuddy.ArrayToJSXMapInspection
+
 import React, {useState} from "react";
 import Header from "../components/Header.jsx";
 import {languages} from "../langList.jsx";
@@ -7,7 +9,7 @@ import WordDisplay from "../components/WordDisplay.jsx";
 
 function App(){
 
-    const [wordes,setWords] = useState("React")
+    const [words,setWords] = useState("React")
 
     let langList = languages.map(language => (
         <Languages
@@ -17,17 +19,15 @@ function App(){
         />
     ))
 
-    let words=['h','e','l',"l",'o']
+    let wordsArr=['h','e','l',"l",'o']
 
 
-        words.push(...wordes)
-
-    console.log(words)
+    wordsArr.push(...words)
 
 
-    const wordList = words.map(word => (
+    const wordList = wordsArr.map(word => (
         <WordDisplay
-            name={word}
+            name={word.toUpperCase()}
         />
     ))
 

@@ -34,7 +34,7 @@ function App(){
 
     const alphabetList = alphabet.split("").map( (item) => (
         <KeyBoard
-            name={item}
+            name={item.toUpperCase()}
         />
     ))
 
@@ -46,7 +46,8 @@ function App(){
                  {langList}
              </section>
              <section className="word">{wordList}</section>
-             <section>{alphabetList}</section>
+             <section className="keyboard">{alphabetList}</section>
+             <button className="new-game">New Game</button>
          </>
     )
 }

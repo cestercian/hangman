@@ -10,7 +10,8 @@ import KeyBoard from "../components/KeyBoard.jsx";
 
 function App(){
 
-    const [word,setWord] = useState("React")
+    const [word] = useState("React")
+    
     const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
 

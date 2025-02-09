@@ -2,7 +2,7 @@
 
 import {useState} from "react";
 import Header from "../components/Header.jsx";
-import {languages} from "../langList.jsx";
+import {countries} from "../langList.jsx";
 import ResultBar from "../components/ResultBar.jsx";
 import Languages from "../components/Languages.jsx";
 import WordDisplay from "../components/WordDisplay.jsx";
@@ -10,12 +10,12 @@ import KeyBoard from "../components/KeyBoard.jsx";
 
 function App(){
 
-    const [word] = useState("React")
+    const [word] = useState("India")
     
     const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
 
-    let langList = languages.map(language => (
+    let langList = countries.map(language => (
         <Languages
             name = {language.name}
             bgColor = {language.backgroundColor}

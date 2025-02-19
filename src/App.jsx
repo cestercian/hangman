@@ -2,7 +2,7 @@
 
 import {useState} from "react";
 import Header from "../components/Header.jsx";
-import {countries} from "../langList.jsx";
+import {languages} from "../langList.jsx";
 import ResultBar from "../components/ResultBar.jsx";
 import Languages from "../components/Languages.jsx";
 import WordDisplay from "../components/WordDisplay.jsx";
@@ -15,7 +15,7 @@ function App(){
     const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
 
-    let langList = countries.map(language => (
+    let langList = languages.map(language => (
         <Languages
             name = {language.name}
             bgColor = {language.backgroundColor}

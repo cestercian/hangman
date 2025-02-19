@@ -1,5 +1,5 @@
 // noinspection com.intellij.reactbuddy.ArrayToJSXMapInspection
-
+import clsx from "clsx";
 import {useState} from "react";
 import Header from "../components/Header.jsx";
 import {languages} from "../langList.jsx";
@@ -10,7 +10,7 @@ import KeyBoard from "../components/KeyBoard.jsx";
 
 function App(){
 
-    const [word] = useState("India")
+    const [word,setword] = useState("react")
     
     const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
@@ -36,8 +36,21 @@ function App(){
     const alphabetList = alphabet.split("").map( (item) => (
         <KeyBoard
             name={item.toUpperCase()}
+            insert={()=>{addLetter(item)}}
+            className={changeColor}
         />
     ))
+
+    function changeColor(){
+        return clsx("bg-red-500")
+    }
+
+    function addLetter(letter){
+        setword((prevWord) =>
+            prevWord + letter
+        )
+    }
+
 
     return (
          <>

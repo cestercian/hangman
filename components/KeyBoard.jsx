@@ -1,5 +1,5 @@
 export default function (prop){
     return(
-        <button>{prop.name}</button>
+        <button onClick={prop.insert} className={prop.className}>{prop.name}</button>
     )
 }

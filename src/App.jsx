@@ -8,66 +8,68 @@ import Languages from "../components/Languages.jsx";
 import WordDisplay from "../components/WordDisplay.jsx";
 import KeyBoard from "../components/KeyBoard.jsx";
 
-function App(){
+function App() {
+  const [word] = useState("react");
+  const [isGuessed, setIsGuessed] = useState(new Set());
+  const [wrongGuesses, setWrongGuesses] = useState(new Set());
 
-    const [igWord,setIgWord] = useState("")
-    const [word,setWord] = useState("react")
-    const [isActive, setIsActive] = useState(false);
-    
-    const alphabet = "abcdefghijklmnopqrstuvwxyz"
+  const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
-    let langList = languages.map(language => (
-        <Languages
-            name = {language.name}
-            bgColor = {language.backgroundColor}
-            color = {language.color}
-            key={language.name}
-        />
-    ))
+  let langList = languages.map((language) => (
+    <Languages
+      name={language.name}
+      bgColor={language.backgroundColor}
+      color={language.color}
+      key={language.name}
+    />
+  ));
 
+  const wordList = word.split("").map((item, index) => (
+    <WordDisplay
+      name={isGuessed.has(item) ? item.toUpperCase() : "_"}
+      key={index}
+    />
+  ));
 
-    const wordList = word.split("").map((item,index) => (
-        <WordDisplay
-            name={igWord.includes(item) ? item.toUpperCase() : "_"}
-            key={index}
-        />
-    ))
-
-
-    const alphabetList = alphabet.split("").map( (item) => (
-        <KeyBoard
-            name={item.toUpperCase()}
-            insert={()=>{guessWord(item)}}
-            className={clsx(
-                "p-4 text-white transition-all",
-                isActive ? "bg-blue-500" : "bg-gray-500")}
-        />
-    ))
-
-
-    function guessWord(letter){
-        if (word.includes(letter) && !igWord.includes(letter)){
-            setIgWord(prevState =>
-                prevState + letter
-            )
-            setIsActive(!isActive)
-        }
-
-    }
-
+  const alphabetList = alphabet.split("" ).map((item) => {
+    const isCorrect = isGuessed.has(item);
+    const isWrong = wrongGuesses.has(item);
 
     return (
-         <>
-             <Header/>
-             <ResultBar/>
-             <section className="language-chips">
-                 {langList}
-             </section>
-             <section className="word">{wordList}</section>
-             <section className="keyboard">{alphabetList}</section>
-             <button className="new-game">New Game</button>
-         </>
-    )
+      <KeyBoard
+        name={item.toUpperCase()}
+        insert={() => guessWord(item)}
+        className={clsx(
+          "p-4 text-white transition-all",
+          isCorrect ? "correct" : isWrong ? "wrong" : "bg-gray-500"
+        )}
+        key={item}
+      />
+    );
+  });
+
+  function guessWord(letter) {
+    if (word.includes(letter)) {
+      if (!isGuessed.has(letter)) {
+        setIsGuessed(prevState => new Set([...prevState, letter]));
+      }
+    } else {
+      if (!wrongGuesses.has(letter)) {
+        setWrongGuesses(prevState => new Set([...prevState, letter]));
+      }
+    }
+  }
+
+  return (
+    <>
+      <Header />
+      <ResultBar />
+      <section className="language-chips">{langList}</section>
+      <section className="word">{wordList}</section>
+      <section className="keyboard">{alphabetList}</section>
+      <button className="new-game">New Game</button>
+    </>
+  );
 }
 
-export default App
+export default App;

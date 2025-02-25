@@ -56,10 +56,11 @@ function App(){
 
 
     function guessWord(letter){
-        if (igWord.includes(letter)){
-
+        if (word.includes(letter) && !igWord.includes(letter)){
+            setIgWord(prevState =>
+                prevState + letter
+            )
         }
-
     }
 
 

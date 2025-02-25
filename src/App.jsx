@@ -10,10 +10,10 @@ import KeyBoard from "../components/KeyBoard.jsx";
 
 function App(){
 
-    const [word,setword] = useState("react")
+    const [igWord,setIgWord] = useState("")
+    const [word,setWord] = useState("react")
     
     const alphabet = "abcdefghijklmnopqrstuvwxyz"
-
 
     let langList = languages.map(language => (
         <Languages
@@ -25,7 +25,7 @@ function App(){
     ))
 
 
-    const wordList = word.split("").map((word,index) => (
+    const wordList = igWord.split("").map((word,index) => (
         <WordDisplay
             name={word.toUpperCase()}
             key={index}
@@ -46,9 +46,20 @@ function App(){
     }
 
     function addLetter(letter){
-        setword((prevWord) =>
-            prevWord + letter
-        )
+        if (word.includes(letter)){
+            setWord( prevWord =>
+                prevWord + letter
+            )
+            guessWord(letter)
+        }
+    }
+
+
+    function guessWord(letter){
+        if (igWord.includes(letter)){
+
+        }
+
     }
 
 

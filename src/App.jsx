@@ -12,6 +12,7 @@ function App(){
 
     const [igWord,setIgWord] = useState("")
     const [word,setWord] = useState("react")
+    const [isActive, setIsActive] = useState(false);
     
     const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
@@ -37,13 +38,12 @@ function App(){
         <KeyBoard
             name={item.toUpperCase()}
             insert={()=>{addLetter(item)}}
-            className={changeColor}
+            className={clsx(
+                "p-4 text-white transition-all",
+                isActive ? "bg-blue-500" : "bg-gray-500")}
         />
     ))
 
-    function changeColor(){
-        return clsx("bg-red-500")
-    }
 
     function addLetter(letter){
         if (word.includes(letter)){
@@ -60,7 +60,9 @@ function App(){
             setIgWord(prevState =>
                 prevState + letter
             )
+            setIsActive(!isActive)
         }
+
     }
 
 

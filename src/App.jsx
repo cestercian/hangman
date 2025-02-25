@@ -26,9 +26,9 @@ function App(){
     ))
 
 
-    const wordList = igWord.split("").map((word,index) => (
+    const wordList = word.split("").map((item,index) => (
         <WordDisplay
-            name={word.toUpperCase()}
+            name={igWord.includes(item) ? item.toUpperCase() : "_"}
             key={index}
         />
     ))
@@ -37,22 +37,12 @@ function App(){
     const alphabetList = alphabet.split("").map( (item) => (
         <KeyBoard
             name={item.toUpperCase()}
-            insert={()=>{addLetter(item)}}
+            insert={()=>{guessWord(item)}}
             className={clsx(
                 "p-4 text-white transition-all",
                 isActive ? "bg-blue-500" : "bg-gray-500")}
         />
     ))
-
-
-    function addLetter(letter){
-        if (word.includes(letter)){
-            setWord( prevWord =>
-                prevWord + letter
-            )
-            guessWord(letter)
-        }
-    }
 
 
     function guessWord(letter){

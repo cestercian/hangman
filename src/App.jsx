@@ -1,4 +1,3 @@
-// noinspection com.intellij.reactbuddy.ArrayToJSXMapInspection
 import clsx from "clsx";
 import {useState} from "react";
 import Header from "../components/Header.jsx";
@@ -12,6 +11,8 @@ function App() {
   const [word] = useState("react");
   const [isGuessed, setIsGuessed] = useState(new Set());
   const [wrongGuesses, setWrongGuesses] = useState(new Set());
+  const [wrongGuessCount, setWrongGuessCount] = useState(1);
+
 
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
@@ -48,6 +49,7 @@ function App() {
     );
   });
 
+
   function guessWord(letter) {
     if (word.includes(letter)) {
       if (!isGuessed.has(letter)) {
@@ -56,6 +58,8 @@ function App() {
     } else {
       if (!wrongGuesses.has(letter)) {
         setWrongGuesses(prevState => new Set([...prevState, letter]));
+        setWrongGuessCount(prevState => prevState + 1)
+          console.log(wrongGuessCount)
       }
     }
   }

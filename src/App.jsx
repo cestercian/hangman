@@ -11,7 +11,7 @@ function App() {
   const [word] = useState("react");
   const [isGuessed, setIsGuessed] = useState(new Set());
   const [wrongGuesses, setWrongGuesses] = useState(new Set());
-  const [wrongGuessCount, setWrongGuessCount] = useState(1);
+  const [wrongGuessCount, setWrongGuessCount] = useState(0);
 
 
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -58,8 +58,8 @@ function App() {
     } else {
       if (!wrongGuesses.has(letter)) {
         setWrongGuesses(prevState => new Set([...prevState, letter]));
-        setWrongGuessCount(prevState => prevState + 1)
-          console.log(wrongGuessCount)
+        setWrongGuessCount(prevState => prevState + 1);
+          //console.log(wrongGuessCount)
       }
     }
   }

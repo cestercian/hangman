@@ -11,17 +11,21 @@ function App() {
   const [word] = useState("react");
   const [isGuessed, setIsGuessed] = useState(new Set());
   const [wrongGuesses, setWrongGuesses] = useState(new Set());
-  const [wrongGuessCount, setWrongGuessCount] = useState(0);
+  //const [wrongGuessCount, setWrongGuessCount] = useState(0);
 
 
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
+  const wrongGuessCount = wrongGuesses.size
+  console.log(wrongGuessCount)
 
-  let langList = languages.map((language) => (
+
+  let langList = languages.map((language,index) => (
     <Languages
       name={language.name}
-      bgColor={language.backgroundColor}
+      bgColor={index<wrongGuessCount?"red":language.backgroundColor}
       color={language.color}
       key={language.name}
+      //className={index<wrongGuessCount?"chip wrong":"chip"}
     />
   ));
 
@@ -58,8 +62,7 @@ function App() {
     } else {
       if (!wrongGuesses.has(letter)) {
         setWrongGuesses(prevState => new Set([...prevState, letter]));
-        setWrongGuessCount(prevState => prevState + 1);
-          //console.log(wrongGuessCount)
+        //setWrongGuessCount(prevState => prevState + 1);
       }
     }
   }

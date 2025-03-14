@@ -16,6 +16,7 @@ function App() {
 
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
   const wrongGuessCount = wrongGuesses.size
+  const isGameOver= wrongGuesses.size === languages.length - 1
   //console.log(wrongGuessCount)
 
 
@@ -74,7 +75,7 @@ function App() {
       <section className="language-chips">{langList}</section>
       <section className="word">{wordList}</section>
       <section className="keyboard">{alphabetList}</section>
-      <button className="new-game">New Game</button>
+      {isGameOver && <button className="new-game">New Game</button>}
     </>
   );
 }

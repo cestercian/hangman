@@ -16,7 +16,8 @@ function App() {
 
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
   const wrongGuessCount = wrongGuesses.size
-  const isGameOver= wrongGuesses.size === languages.length - 1
+  const isGameOver=
+       isGuessed.size === word.length || wrongGuesses.size === languages.length - 1
   //console.log(wrongGuessCount)
 
 

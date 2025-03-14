@@ -16,16 +16,18 @@ function App() {
 
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
   const wrongGuessCount = wrongGuesses.size
-  console.log(wrongGuessCount)
+  const isGameOver=
+       isGuessed.size === word.length || wrongGuesses.size === languages.length - 1
+  //console.log(wrongGuessCount)
 
 
   let langList = languages.map((language,index) => (
     <Languages
       name={language.name}
-      bgColor={index<wrongGuessCount?"red":language.backgroundColor}
+      bgColor={language.backgroundColor}
       color={language.color}
       key={language.name}
-      //className={index<wrongGuessCount?"chip wrong":"chip"}
+      className={clsx("chip", { lost: index < wrongGuessCount })}
     />
   ));
 
@@ -74,7 +76,7 @@ function App() {
       <section className="language-chips">{langList}</section>
       <section className="word">{wordList}</section>
       <section className="keyboard">{alphabetList}</section>
-      <button className="new-game">New Game</button>
+      {isGameOver && <button className="new-game">New Game</button>}
     </>
   );
 }

@@ -16,16 +16,16 @@ function App() {
 
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
   const wrongGuessCount = wrongGuesses.size
-  console.log(wrongGuessCount)
+  //console.log(wrongGuessCount)
 
 
   let langList = languages.map((language,index) => (
     <Languages
       name={language.name}
-      bgColor={index<wrongGuessCount?"red":language.backgroundColor}
+      bgColor={language.backgroundColor}
       color={language.color}
       key={language.name}
-      //className={index<wrongGuessCount?"chip wrong":"chip"}
+      className={clsx("chip", { lost: index < wrongGuessCount })}
     />
   ));
 

@@ -1,19 +1,15 @@
-export default function Languages(props){
-
+export default function Languages(props) {
     const styles = {
-        container: {
-            backgroundColor: props.bgColor,
-            color : props.color,
-        }
-    }
+        backgroundColor: props.bgColor,
+        color: props.color,
+    };
 
-    return(
+    return (
         <span
-            className="chip"
-            style={styles.container}
-            key={props.name}
+            className={props.className}
+            style={styles}
         >
             {props.name}
         </span>
-    )
+    );
 }

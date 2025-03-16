@@ -39,11 +39,16 @@ export default function ResultBar(props) {
             <p style={styles.paragraph}>You lose! Better start learning Assembly 😭</p>
         </section>
 
-    const resultBar =  props.status ? lostResultBar : winResultBar
-
+    const resultBar = () => {
+        if (props.status) {
+            return lostResultBar
+        }else{
+            return winResultBar
+        }
+    }
     return (
         <>
-            {resultBar}
+            {resultBar()}
         </>
     );
 }

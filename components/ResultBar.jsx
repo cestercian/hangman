@@ -1,7 +1,16 @@
-export default function ResultBar() {
+export default function ResultBar(props) {
     const styles = {
-        container: {
+        winContainer: {
             backgroundColor: "#10A95B",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            color: "#F9F4DA",
+            borderRadius: "4px",
+            marginBlock: "30px",
+        },
+        lostContainer: {
+            backgroundColor: "rgba(169,16,57,0.59)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -18,10 +27,23 @@ export default function ResultBar() {
         }
     };
 
-    return (
-        <section id="resultBar" style={styles.container}>
+    const winResultBar =
+        <section id="resultBar" style={styles.winContainer}>
             <h2 style={styles.heading}>You Win!</h2>
             <p style={styles.paragraph}>Well done! 🎉</p>
+        </section>
+
+    const lostResultBar =
+        <section id="resultBar" style={styles.lostContainer}>
+            <h2 style={styles.heading}>You Lost!</h2>
+            <p style={styles.paragraph}>You lose! Better start learning Assembly 😭</p>
+        </section>
+
+    const resultBar =  props.status ? lostResultBar : winResultBar
+
+    return (
+        <section>
+            {resultBar}
         </section>
     );
 }

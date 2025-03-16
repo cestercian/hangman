@@ -68,8 +68,9 @@ section.language-chips {
   flex-wrap: wrap;
   gap: 5px;
   justify-content: center;
+  align-items: center;
   max-width: 350px;
-  margin-bottom: 36px;
+  margin: 0 auto 36px;
 }
 
 span.chip {

@@ -35,6 +35,7 @@ section.game-status {
   flex-direction: column;
   align-items: center;
   color: #F9F4DA;
+  min-height: 60px;
   border-radius: 4px;
   margin-block: 30px;
 }

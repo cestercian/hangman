@@ -42,8 +42,8 @@ export default function ResultBar(props) {
     const resultBar =  props.status ? lostResultBar : winResultBar
 
     return (
-        <section>
+        <>
             {resultBar}
-        </section>
+        </>
     );
 }

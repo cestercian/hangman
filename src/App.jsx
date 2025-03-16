@@ -70,10 +70,6 @@ function App() {
     }
   }
 
-  function gameStatus(){
-    console.log(isGameOver)
-    return isGameOver;
-  }
 
   return (
     <>

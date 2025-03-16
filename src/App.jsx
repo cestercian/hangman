@@ -14,8 +14,9 @@ function App() {
 
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
   const wrongGuessCount = wrongGuesses.size
-  const isGameOver=
-       isGuessed.size === word.length || wrongGuesses.size >= languages.length - 1
+  const isGameWon = isGuessed.size === word.length
+  const isGameLost = wrongGuesses.size >= languages.length - 1
+  const isGameOver= isGameWon || isGameLost
 
 
   let langList = languages.map((language,index) => (

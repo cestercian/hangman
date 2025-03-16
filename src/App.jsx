@@ -66,13 +66,7 @@ function App() {
   }
 
   function gameStatus(){
-    if(isGameWon){
-      return 1
-    }else if(isGameLost){
-      return 2
-    }else{
-      return 0
-    }
+    return isGameWon ? 1 : isGameLost ? 2 : 0
   }
 
   return (

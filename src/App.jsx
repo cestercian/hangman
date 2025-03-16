@@ -65,11 +65,21 @@ function App() {
     }
   }
 
+  function gameStatus(){
+    if(isGameWon){
+      return 1
+    }else if(isGameLost){
+      return 2
+    }else{
+      return 0
+    }
+  }
+
   return (
     <>
       <Header />
       <ResultBar
-          status={isGameOver}
+          status={gameStatus()}
       />
       <section className="language-chips">{langList}</section>
       <section className="word">{wordList}</section>

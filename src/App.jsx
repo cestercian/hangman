@@ -14,11 +14,12 @@ function App() {
   //const [wrongGuessCount, setWrongGuessCount] = useState(0);
 
 
+
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
   const wrongGuessCount = wrongGuesses.size
   const isGameOver=
-       isGuessed.size === word.length || wrongGuesses.size === languages.length - 1
-  //console.log(wrongGuessCount)
+       isGuessed.size === word.length || wrongGuesses.size >= languages.length - 1
+
 
 
   let langList = languages.map((language,index) => (
@@ -69,10 +70,17 @@ function App() {
     }
   }
 
+  function gameStatus(){
+    console.log(isGameOver)
+    return isGameOver;
+  }
+
   return (
     <>
       <Header />
-      <ResultBar />
+      <ResultBar
+          status={isGameOver}
+      />
       <section className="language-chips">{langList}</section>
       <section className="word">{wordList}</section>
       <section className="keyboard">{alphabetList}</section>

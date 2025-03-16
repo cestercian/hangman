@@ -11,15 +11,11 @@ function App() {
   const [word] = useState("react");
   const [isGuessed, setIsGuessed] = useState(new Set());
   const [wrongGuesses, setWrongGuesses] = useState(new Set());
-  //const [wrongGuessCount, setWrongGuessCount] = useState(0);
-
-
 
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
   const wrongGuessCount = wrongGuesses.size
   const isGameOver=
        isGuessed.size === word.length || wrongGuesses.size >= languages.length - 1
-
 
 
   let langList = languages.map((language,index) => (
@@ -56,7 +52,6 @@ function App() {
     );
   });
 
-
   function guessWord(letter) {
     if (word.includes(letter)) {
       if (!isGuessed.has(letter)) {
@@ -65,11 +60,9 @@ function App() {
     } else {
       if (!wrongGuesses.has(letter)) {
         setWrongGuesses(prevState => new Set([...prevState, letter]));
-        //setWrongGuessCount(prevState => prevState + 1);
       }
     }
   }
-
 
   return (
     <>

@@ -11,15 +11,12 @@ function App() {
   const [word] = useState("react");
   const [isGuessed, setIsGuessed] = useState(new Set());
   const [wrongGuesses, setWrongGuesses] = useState(new Set());
-  //const [wrongGuessCount, setWrongGuessCount] = useState(0);
-
-
 
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
   const wrongGuessCount = wrongGuesses.size
-  const isGameOver=
-       isGuessed.size === word.length || wrongGuesses.size >= languages.length - 1
-
+  const isGameWon = isGuessed.size === word.length
+  const isGameLost = wrongGuesses.size >= languages.length - 1
+  const isGameOver= isGameWon || isGameLost
 
 
   let langList = languages.map((language,index) => (
@@ -56,7 +53,6 @@ function App() {
     );
   });
 
-
   function guessWord(letter) {
     if (word.includes(letter)) {
       if (!isGuessed.has(letter)) {
@@ -65,17 +61,19 @@ function App() {
     } else {
       if (!wrongGuesses.has(letter)) {
         setWrongGuesses(prevState => new Set([...prevState, letter]));
-        //setWrongGuessCount(prevState => prevState + 1);
       }
     }
   }
 
+  function gameStatus(){
+    return isGameWon ? 1 : isGameLost ? 2 : 0
+  }
 
   return (
     <>
       <Header />
       <ResultBar
-          status={isGameOver}
+          status={gameStatus()}
       />
       <section className="language-chips">{langList}</section>
       <section className="word">{wordList}</section>

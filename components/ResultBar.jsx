@@ -9,6 +9,15 @@ export default function ResultBar(props) {
             borderRadius: "4px",
             marginBlock: "30px",
         },
+        container: {
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            color: "#F9F4DA",
+            borderRadius: "4px",
+            marginBlock: "30px",
+            opacity : 0,
+        },
         lostContainer: {
             backgroundColor: "rgba(169,16,57,0.59)",
             display: "flex",
@@ -39,11 +48,19 @@ export default function ResultBar(props) {
             <p style={styles.paragraph}>You lose! Better start learning Assembly 😭</p>
         </section>
 
+    const emptyResultBar =
+        <section id="resultBar" style={styles.container}>
+            <h2 style={styles.heading}>&nbsp; </h2>
+            <p style={styles.paragraph}>&nbsp; </p>
+        </section>
+
     const resultBar = () => {
-        if (props.status) {
+        if (props.status === 2) {
             return lostResultBar
-        }else{
+        }else if(props.status === 1){
             return winResultBar
+        }else {
+            return emptyResultBar
         }
     }
     return (

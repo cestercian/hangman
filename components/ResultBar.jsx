@@ -1,6 +1,6 @@
 import {languages} from "../langList.jsx";
 import getFarewellText from "../utlis.jsx";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 
 export default function ResultBar( props ) {
     const baseStyles = {
@@ -22,15 +22,14 @@ export default function ResultBar( props ) {
         paragraph: { margin: "5px" },
     };
 
-    const [lostLan,setLostLan] = useState("html")
+    //console.log(languages[props.lostLangIndex===0?return:props.lostLangIndex].name)
+
 
     useEffect(()=>{
         if (props.lostLangIndex > 0) {
-            setLostLan((prevState) => prevState + " & " + languages[props.lostLangIndex].name)
-            console.log(getFarewellText(lostLan));
+            console.log(getFarewellText(languages[props.lostLangIndex - 1].name));
         }
     },[props.lostLangIndex])
-
 
 
     return (

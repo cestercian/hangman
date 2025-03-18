@@ -6,6 +6,7 @@ import ResultBar from "../components/ResultBar.jsx";
 import Languages from "../components/Languages.jsx";
 import WordDisplay from "../components/WordDisplay.jsx";
 import KeyBoard from "../components/KeyBoard.jsx";
+import getFarewellText from "../utlis.jsx";
 
 function App() {
   const [word] = useState("react");
@@ -69,11 +70,16 @@ function App() {
     return isGameWon ? 1 : isGameLost ? 2 : 0
   }
 
+  function lostlanguage(i) {
+
+  }
+
   return (
     <>
       <Header />
       <ResultBar
           status={gameStatus()}
+          lostLangIndex={wrongGuessCount}
       />
       <section className="language-chips">{langList}</section>
       <section className="word">{wordList}</section>

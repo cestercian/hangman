@@ -1,4 +1,6 @@
-export default function ResultBar({ status }) {
+import {languages} from "../langList.jsx";
+
+export default function ResultBar( props ) {
     const baseStyles = {
         display: "flex",
         flexDirection: "column",
@@ -18,21 +20,26 @@ export default function ResultBar({ status }) {
         paragraph: { margin: "5px" },
     };
 
+    const lostlang = languages.map( lang =>
+        lang === props.lostLangIndex
+    )
+
+    console.log(props.lostLangIndex)
     return (
         <section
             id="resultBar"
             style={
-                status === 2 ? styles.lostContainer :
-                    status === 1 ? styles.winContainer :
-                        styles.emptyContainer
+                props.status === 2 ? styles.lostContainer :
+                    props.status === 1 ? styles.winContainer :
+                        props.status.emptyContainer
             }
         >
             <h2 style={styles.heading}>
-                {status === 1 ? "You Win!" : status === 2 ? "You Lost!" : "\u200B"}
+                {props.status === 1 ? "You Win!" : props.status === 2 ? "You Lost!" : "\u200B"}
             </h2>
             <p style={styles.paragraph}>
-                {status === 1 ? "Well done! 🎉" :
-                    status === 2 ? "You lose! Better start learning Assembly 😭" :
+                {props.status === 1 ? "Well done! 🎉" :
+                    props.status === 2 ? "You lose! Better start learning Assembly 😭" :
                         "\u200B"}
             </p>
         </section>

@@ -26,7 +26,7 @@ export default function ResultBar( props ) {
 
     useEffect(()=>{
         if (props.lostLangIndex > 0) {
-            setLostLan((prevState) => prevState + "& " + languages[props.lostLangIndex].name)
+            setLostLan((prevState) => prevState + " & " + languages[props.lostLangIndex].name)
             console.log(getFarewellText(lostLan));
         }
     },[props.lostLangIndex])

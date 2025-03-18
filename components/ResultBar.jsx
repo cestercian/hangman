@@ -18,12 +18,14 @@ export default function ResultBar( props ) {
         winContainer: { ...baseStyles, backgroundColor: "#10A95B", opacity: 1 },
         lostContainer: { ...baseStyles, backgroundColor: "rgba(169,16,57,0.59)", opacity: 1 },
         emptyContainer: { ...baseStyles, backgroundColor: "transparent", opacity: 0 },
+        losingContainer:{...baseStyles, backgroundColor: "#153d5c", opacity: 1 },
         heading: { fontSize: "1.25rem", margin: "5px" },
         paragraph: { margin: "5px" },
     };
 
     //console.log(languages[props.lostLangIndex===0?return:props.lostLangIndex].name)
 
+    //let stat = 0
 
     useEffect(()=>{
         if (props.lostLangIndex > 0) {
@@ -38,7 +40,7 @@ export default function ResultBar( props ) {
             style={
                 props.status === 2 ? styles.lostContainer :
                     props.status === 1 ? styles.winContainer :
-                        props.status.emptyContainer
+                        props.status.losingContainer
             }
         >
             <h2 style={styles.heading}>

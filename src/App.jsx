@@ -70,10 +70,6 @@ function App() {
     return isGameWon ? 1 : isGameLost ? 2 : 0
   }
 
-  function lostlanguage(i) {
-
-  }
-
   return (
     <>
       <Header />

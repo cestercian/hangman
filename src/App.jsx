@@ -6,10 +6,11 @@ import ResultBar from "../components/ResultBar.jsx";
 import Languages from "../components/Languages.jsx";
 import WordDisplay from "../components/WordDisplay.jsx";
 import KeyBoard from "../components/KeyBoard.jsx";
+import {getRandomWord} from "../utlis.jsx";
 
 function App() {
 
-  const [word] = useState("react");
+  const [word] = useState(getRandomWord);
   const [isGuessed, setIsGuessed] = useState(new Set());
   const [wrongGuesses, setWrongGuesses] = useState(new Set());
 

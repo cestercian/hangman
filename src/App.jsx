@@ -16,9 +16,11 @@ function App() {
 
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
   const wrongGuessCount = wrongGuesses.size
-  const isGameWon = isGuessed.size === word.length
+  const isGameWon = word.split("").every(letter => isGuessed.has(letter));
   const isGameLost = wrongGuesses.size >= languages.length - 1
   const isGameOver= isGameWon || isGameLost
+
+  console.log(word)
 
 
   let langList = languages.map((language,index) => (
@@ -31,12 +33,17 @@ function App() {
     />
   ));
 
-  const wordList = word.split("").map((item, index) => (
-    <WordDisplay
-      name={isGuessed.has(item) ? item.toUpperCase() : "_"}
-      key={index}
-    />
-  ));
+  const wordList = word.split("").map((item, index) => {
+
+    const showLetter = isGameOver || isGuessed.has(item)
+    return (
+        <WordDisplay
+            name={ showLetter ? item.toUpperCase() : "_"}
+            showLetter = {clsx(isGameLost && !isGuessed.has(item) && "missed-letter")}
+            key={index}
+        />
+    )
+  });
 
   const alphabetList = alphabet.split("" ).map((item) => {
     const isCorrect = isGuessed.has(item);

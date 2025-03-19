@@ -18,7 +18,7 @@ export default function ResultBar(props) {
         winContainer: { ...baseStyles, backgroundColor: "#10A95B" },
         lostContainer: { ...baseStyles, backgroundColor: "rgba(169,16,57,0.59)" },
         emptyContainer: { ...baseStyles, backgroundColor: "transparent", opacity: 0 },
-        losingContainer: { ...baseStyles, backgroundColor: "#153d5c" },
+        losingContainer: { ...baseStyles, backgroundColor: "#7a5ea7" },
         heading: { fontSize: "1.25rem", margin: "5px" },
         paragraph: { margin: "5px" },
     };
@@ -26,26 +26,25 @@ export default function ResultBar(props) {
     const [opacity, setOpacity] = useState(0);
 
     useEffect(() => {
-
         if (props.lostLangIndex > 0) {
             console.log(getFarewellText(languages[props.lostLangIndex - 1].name));
         }
-
         if (props.status !== 0) {
             setOpacity(0); // Start from invisible
             setTimeout(() => setOpacity(1), 50); // Animate in after a short delay
         }
     }, [props.status, props.lostLangIndex]);
 
+    console.log(props.status)
+
     return (
         <section
             id="resultBar"
             style={{
-                ...(props.status === 2
-                    ? styles.lostContainer
-                    : props.status === 1
-                        ? styles.winContainer
-                        : styles.emptyContainer),
+                ...(props.status === 2 ? styles.lostContainer
+                    : props.status === 1 ? styles.winContainer
+                        :props.status === 3 ? styles.losingContainer
+                            : styles.emptyContainer),
                 opacity,
             }}
         >

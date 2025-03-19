@@ -24,10 +24,11 @@ export default function ResultBar(props) {
     };
 
     const [opacity, setOpacity] = useState(0);
+    const [losingMsg,setLosingMsg] = useState("")
 
     useEffect(() => {
         if (props.lostLangIndex > 0) {
-            console.log(getFarewellText(languages[props.lostLangIndex - 1].name));
+            setLosingMsg(() => getFarewellText(languages[props.lostLangIndex - 1].name));
         }
         if (props.status !== 0) {
             setOpacity(0); // Start from invisible
@@ -36,6 +37,16 @@ export default function ResultBar(props) {
     }, [props.status, props.lostLangIndex]);
 
     console.log(props.status)
+
+    const losingBar = (
+        <>
+            <p style={styles.paragraph}>
+            {losingMsg}
+            </p>
+        </>
+    )
+
+
 
     return (
         <section
@@ -48,16 +59,18 @@ export default function ResultBar(props) {
                 opacity,
             }}
         >
-            <h2 style={styles.heading}>
-                {props.status === 1 ? "You Win!" : props.status === 2 ? "You Lost!" : "\u200B"}
-            </h2>
-            <p style={styles.paragraph}>
-                {props.status === 1
-                    ? "Well done! 🎉"
-                    : props.status === 2
-                        ? "You lose! Better start learning Assembly 😭"
-                        : "\u200B"}
-            </p>
+            {props.status === 3 ? losingBar :
+                <>
+                    <h2 style={styles.heading}>
+                        {props.status === 1 ? "You Win!" : props.status === 2 ? "You Lost!" : "\u200B"}
+                    </h2>
+                    <p style={styles.paragraph}>
+                        {props.status === 1 ? "Well done! 🎉"
+                            : props.status === 2 ? "You lose! Better start learning Assembly 😭"
+                                : "\u200B"}
+                    </p>
+                </>
+            }
         </section>
     );
 }

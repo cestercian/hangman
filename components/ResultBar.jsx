@@ -35,8 +35,8 @@ export default function ResultBar(props) {
             justifyContent: "center",
             height: "80px",
         },
-        heading: { fontSize: "1.5rem", margin: "5px" },
-        paragraph: { fontSize: "1.2rem", margin: "0", textAlign: "center" },
+        heading: { fontSize: "1.2rem", margin: "5px" },
+        paragraph: { fontSize: "1.1rem", margin: "0", textAlign: "center",padding:5 },
     };
 
     const [opacity, setOpacity] = useState(0);

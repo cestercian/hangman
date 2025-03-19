@@ -50,7 +50,7 @@ function App() {
           isCorrect ? "correct" : isWrong ? "wrong" : "bg-gray-500"
         )}
         key={item}
-        is
+        isDisable={isGameOver}
       />
     );
   });

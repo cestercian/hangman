@@ -1,8 +1,8 @@
-import {languages} from "../langList.jsx";
+import { useEffect, useState } from "react";
+import { languages } from "../langList.jsx";
 import getFarewellText from "../utlis.jsx";
-import {useEffect} from "react";
 
-export default function ResultBar( props ) {
+export default function ResultBar(props) {
     const baseStyles = {
         display: "flex",
         flexDirection: "column",
@@ -15,41 +15,49 @@ export default function ResultBar( props ) {
     };
 
     const styles = {
-        winContainer: { ...baseStyles, backgroundColor: "#10A95B", opacity: 1 },
-        lostContainer: { ...baseStyles, backgroundColor: "rgba(169,16,57,0.59)", opacity: 1 },
+        winContainer: { ...baseStyles, backgroundColor: "#10A95B" },
+        lostContainer: { ...baseStyles, backgroundColor: "rgba(169,16,57,0.59)" },
         emptyContainer: { ...baseStyles, backgroundColor: "transparent", opacity: 0 },
-        losingContainer:{...baseStyles, backgroundColor: "#153d5c", opacity: 1 },
+        losingContainer: { ...baseStyles, backgroundColor: "#153d5c" },
         heading: { fontSize: "1.25rem", margin: "5px" },
         paragraph: { margin: "5px" },
     };
 
-    //console.log(languages[props.lostLangIndex===0?return:props.lostLangIndex].name)
+    const [opacity, setOpacity] = useState(0);
 
-    //let stat = 0
+    useEffect(() => {
 
-    useEffect(()=>{
         if (props.lostLangIndex > 0) {
             console.log(getFarewellText(languages[props.lostLangIndex - 1].name));
         }
-    },[props.lostLangIndex])
 
+        if (props.status !== 0) {
+            setOpacity(0); // Start from invisible
+            setTimeout(() => setOpacity(1), 50); // Animate in after a short delay
+        }
+    }, [props.status, props.lostLangIndex]);
 
     return (
         <section
             id="resultBar"
-            style={
-                props.status === 2 ? styles.lostContainer :
-                    props.status === 1 ? styles.winContainer :
-                        props.status.losingContainer
-            }
+            style={{
+                ...(props.status === 2
+                    ? styles.lostContainer
+                    : props.status === 1
+                        ? styles.winContainer
+                        : styles.emptyContainer),
+                opacity,
+            }}
         >
             <h2 style={styles.heading}>
                 {props.status === 1 ? "You Win!" : props.status === 2 ? "You Lost!" : "\u200B"}
             </h2>
             <p style={styles.paragraph}>
-                {props.status === 1 ? "Well done! 🎉" :
-                    props.status === 2 ? "You lose! Better start learning Assembly 😭" :
-                        "\u200B"}
+                {props.status === 1
+                    ? "Well done! 🎉"
+                    : props.status === 2
+                        ? "You lose! Better start learning Assembly 😭"
+                        : "\u200B"}
             </p>
         </section>
     );

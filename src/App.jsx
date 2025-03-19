@@ -67,7 +67,7 @@ function App() {
   }
 
   function gameStatus(){
-    return isGameWon ? 1 : isGameLost ? 2 : wrongGuesses.size > 1 && wrongGuesses.size < languages.length - 1
+    return isGameWon ? 1 : isGameLost ? 2 : wrongGuesses.size > 0 && wrongGuesses.size < languages.length - 1
         ? 3 : 0;
   }
 

@@ -10,7 +10,7 @@ import {getRandomWord} from "../utlis.jsx";
 
 function App() {
 
-  const [word] = useState(getRandomWord);
+  const [word] = useState(() => getRandomWord());
   const [isGuessed, setIsGuessed] = useState(new Set());
   const [wrongGuesses, setWrongGuesses] = useState(new Set());
 

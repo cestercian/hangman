@@ -10,7 +10,7 @@ import {getRandomWord} from "../utlis.jsx";
 
 function App() {
 
-  const [word] = useState(() => getRandomWord());
+  const [word,setWord] = useState(() => getRandomWord());
   const [isGuessed, setIsGuessed] = useState(new Set());
   const [wrongGuesses, setWrongGuesses] = useState(new Set());
 
@@ -75,6 +75,12 @@ function App() {
                 : 0;
   }
 
+  function resetGame() {
+    setIsGuessed(new Set())
+    setWord(getRandomWord())
+    setWrongGuesses(new Set())
+  }
+
   return (
     <>
       <Header />
@@ -85,7 +91,7 @@ function App() {
       <section className="language-chips">{langList}</section>
       <section className="word">{wordList}</section>
       <section className="keyboard">{alphabetList}</section>
-      {isGameOver && <button className="new-game">New Game</button>}
+      {isGameOver && <button className="new-game" onClick={resetGame}>New Game</button>}
     </>
   );
 }

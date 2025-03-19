@@ -6,18 +6,24 @@ import ResultBar from "../components/ResultBar.jsx";
 import Languages from "../components/Languages.jsx";
 import WordDisplay from "../components/WordDisplay.jsx";
 import KeyBoard from "../components/KeyBoard.jsx";
-import getFarewellText from "../utlis.jsx";
+import {getRandomWord} from "../utlis.jsx";
+import Confetti from "react-confetti"
+import { useWindowSize } from 'react-use';
 
 function App() {
-  const [word] = useState("react");
+
+  const [word,setWord] = useState(() => getRandomWord());
   const [isGuessed, setIsGuessed] = useState(new Set());
   const [wrongGuesses, setWrongGuesses] = useState(new Set());
 
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
   const wrongGuessCount = wrongGuesses.size
-  const isGameWon = isGuessed.size === word.length
+  const isGameWon = word.split("").every(letter => isGuessed.has(letter));
   const isGameLost = wrongGuesses.size >= languages.length - 1
   const isGameOver= isGameWon || isGameLost
+  const { width, height } = useWindowSize();
+
+  console.log(word)
 
 
   let langList = languages.map((language,index) => (
@@ -30,12 +36,17 @@ function App() {
     />
   ));
 
-  const wordList = word.split("").map((item, index) => (
-    <WordDisplay
-      name={isGuessed.has(item) ? item.toUpperCase() : "_"}
-      key={index}
-    />
-  ));
+  const wordList = word.split("").map((item, index) => {
+
+    const showLetter = isGameOver || isGuessed.has(item)
+    return (
+        <WordDisplay
+            name={ showLetter ? item.toUpperCase() : "_"}
+            showLetter = {clsx(isGameLost && !isGuessed.has(item) && "missed-letter")}
+            key={index}
+        />
+    )
+  });
 
   const alphabetList = alphabet.split("" ).map((item) => {
     const isCorrect = isGuessed.has(item);
@@ -50,6 +61,7 @@ function App() {
           isCorrect ? "correct" : isWrong ? "wrong" : "bg-gray-500"
         )}
         key={item}
+        isDisable={isGameOver}
       />
     );
   });
@@ -73,6 +85,12 @@ function App() {
                 : 0;
   }
 
+  function resetGame() {
+    setIsGuessed(new Set())
+    setWord(getRandomWord())
+    setWrongGuesses(new Set())
+  }
+
   return (
     <>
       <Header />
@@ -83,7 +101,8 @@ function App() {
       <section className="language-chips">{langList}</section>
       <section className="word">{wordList}</section>
       <section className="keyboard">{alphabetList}</section>
-      {isGameOver && <button className="new-game">New Game</button>}
+      {isGameOver && <button className="new-game" onClick={resetGame}>New Game</button>}
+      {isGameWon && <Confetti width={width} height={height} recycle={false} numberOfPieces={1000} />}
     </>
   );
 }

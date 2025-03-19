@@ -113,6 +113,10 @@ section.word > span {
   border-bottom: 1px solid #F9F4DA;
 }
 
+section.word > span.missed-letter {
+  color: #ea2121;
+}
+
 section.keyboard {
   display: flex;
   flex-wrap: wrap;
@@ -137,6 +141,11 @@ section.keyboard > button.correct {
 
 section.keyboard > button.wrong {
   background-color: #EC5D49;
+}
+
+section.keyboard > button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5
 }
 
 button.new-game {

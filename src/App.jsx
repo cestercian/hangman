@@ -7,6 +7,8 @@ import Languages from "../components/Languages.jsx";
 import WordDisplay from "../components/WordDisplay.jsx";
 import KeyBoard from "../components/KeyBoard.jsx";
 import {getRandomWord} from "../utlis.jsx";
+import Confetti from "react-confetti"
+import { useWindowSize } from 'react-use';
 
 function App() {
 
@@ -19,6 +21,7 @@ function App() {
   const isGameWon = word.split("").every(letter => isGuessed.has(letter));
   const isGameLost = wrongGuesses.size >= languages.length - 1
   const isGameOver= isGameWon || isGameLost
+  const { width, height } = useWindowSize();
 
   console.log(word)
 
@@ -99,6 +102,7 @@ function App() {
       <section className="word">{wordList}</section>
       <section className="keyboard">{alphabetList}</section>
       {isGameOver && <button className="new-game" onClick={resetGame}>New Game</button>}
+      {isGameWon && <Confetti width={width} height={height} recycle={false} numberOfPieces={1000} />}
     </>
   );
 }

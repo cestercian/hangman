@@ -1,4 +1,10 @@
-export default function getFarewellText(language) {
+import {words} from "./words.jsx";
+
+export function getRandomWord() {
+    return words[Math.floor(Math.random()*words.length)]
+}
+
+export function getFarewellText(language) {
     const options = [
         `Farewell, ${language} 😢`,
         `Adios, ${language} 👋`,

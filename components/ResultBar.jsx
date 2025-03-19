@@ -8,7 +8,7 @@ export default function ResultBar(props) {
         borderRadius: "4px",
         marginBlock: "30px",
         minHeight: "60px",
-        transition: "opacity 0.5s ease-in-out, background-color 0.5s ease-in-out", // Smooth fade-in and color transition
+        transition: "opacity 0.5s ease-in-out, background-color 0.5s ease-in-out",
     };
 
     const styles = {
@@ -66,7 +66,8 @@ export default function ResultBar(props) {
             }}
         >
             {props.status === 3 ? (
-                <p key={losingMsg} style={styles.paragraph}>{losingMsg}</p> // Key forces re-render when text changes
+                <p key={losingMsg} style={styles.paragraph}>{losingMsg}</p>
+                // Key forces re-render when text changes
             ) : (
                 <>
                     <h2 style={styles.heading}>

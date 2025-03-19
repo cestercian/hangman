@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { languages } from "../langList.jsx";
-import getFarewellText from "../utlis.jsx";
+import { getFarewellText }from "../utlis.jsx";
 
 export default function ResultBar(props) {
     const baseStyles = {

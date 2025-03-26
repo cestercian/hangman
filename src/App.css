@@ -160,4 +160,6 @@ button.new-game {
   display: block;
   margin-inline: auto;
   cursor: pointer;
+  font-size: clamp(0.7rem, 3vw, 0.9rem);
+  color: #000000;
 }

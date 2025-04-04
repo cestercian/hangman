@@ -1,0 +1,20 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.bun/
+
+# Vercel build outputs
+.vercel/
+.next/
+dist/
+out/
+
+# MacOS-specific files
+.DS_Store
+
+# Editor/IDE settings
+.idea/
+.vscode/

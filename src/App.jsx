@@ -9,6 +9,7 @@ import KeyBoard from "../components/KeyBoard.jsx";
 import {getRandomWord} from "../utlis.jsx";
 import Confetti from "react-confetti"
 import { useWindowSize } from 'react-use';
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 function App() {
 
@@ -103,6 +104,7 @@ function App() {
       <section className="keyboard">{alphabetList}</section>
       {isGameOver && <button className="new-game" onClick={resetGame}>New Game</button>}
       {isGameWon && <Confetti width={width} height={height} recycle={false} numberOfPieces={1000} />}
+      <SpeedInsights/>
     </>
   );
 }

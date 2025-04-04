@@ -9,7 +9,9 @@ import KeyBoard from "../components/KeyBoard.jsx";
 import {getRandomWord} from "../utlis.jsx";
 import Confetti from "react-confetti"
 import { useWindowSize } from 'react-use';
-import { SpeedInsights } from "@vercel/speed-insights/react"
+import { inject } from "@vercel/speed-insights";
+
+inject();
 
 function App() {
 
@@ -28,13 +30,13 @@ function App() {
 
 
   let langList = languages.map((language,index) => (
-    <Languages
-      name={language.name}
-      bgColor={language.backgroundColor}
-      color={language.color}
-      key={language.name}
-      className={clsx("chip", { lost: index < wrongGuessCount })}
-    />
+      <Languages
+          name={language.name}
+          bgColor={language.backgroundColor}
+          color={language.color}
+          key={language.name}
+          className={clsx("chip", { lost: index < wrongGuessCount })}
+      />
   ));
 
   const wordList = word.split("").map((item, index) => {
@@ -54,16 +56,16 @@ function App() {
     const isWrong = wrongGuesses.has(item);
 
     return (
-      <KeyBoard
-        name={item.toUpperCase()}
-        insert={() => guessWord(item)}
-        className={clsx(
-          "p-4 text-white transition-all",
-          isCorrect ? "correct" : isWrong ? "wrong" : "bg-gray-500"
-        )}
-        key={item}
-        isDisable={isGameOver}
-      />
+        <KeyBoard
+            name={item.toUpperCase()}
+            insert={() => guessWord(item)}
+            className={clsx(
+                "p-4 text-white transition-all",
+                isCorrect ? "correct" : isWrong ? "wrong" : "bg-gray-500"
+            )}
+            key={item}
+            isDisable={isGameOver}
+        />
     );
   });
 
@@ -104,7 +106,6 @@ function App() {
       <section className="keyboard">{alphabetList}</section>
       {isGameOver && <button className="new-game" onClick={resetGame}>New Game</button>}
       {isGameWon && <Confetti width={width} height={height} recycle={false} numberOfPieces={1000} />}
-      <SpeedInsights/>
     </>
   );
 }

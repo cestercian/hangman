@@ -9,9 +9,6 @@ import KeyBoard from "../components/KeyBoard.jsx";
 import {getRandomWord} from "../utlis.jsx";
 import Confetti from "react-confetti"
 import { useWindowSize } from 'react-use';
-import { inject } from "@vercel/speed-insights";
-
-inject();
 
 function App() {
 

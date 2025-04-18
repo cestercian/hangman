@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import {useState} from "react";
+import {useEffect,useState} from "react";
 import Header from "../components/Header.jsx";
 import {languages} from "../langList.jsx";
 import ResultBar from "../components/ResultBar.jsx";
@@ -23,8 +23,9 @@ function App() {
   const isGameOver= isGameWon || isGameLost
   const { width, height } = useWindowSize();
 
-  console.log(word)
-
+  useEffect(() => {
+    console.log(word)
+  }, [word]);
 
   let langList = languages.map((language,index) => (
       <Languages
